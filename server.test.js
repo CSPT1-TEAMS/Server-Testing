@@ -7,5 +7,17 @@ describe('server loads', () => {
         .get('/')
         .expect(200)
     })
-    
+
+    it('return json from endpoint /', (done) => {
+        const testJson = {'dBStatus': 'connected'}
+        request(server)
+        .get('/')
+        .end((err, res) => {
+            if (err) return done(err);
+            expect(res.status).toBe(200)
+            expect(res.body).toEqual(testJson)
+        done();
+        })
+    })
+
 })
