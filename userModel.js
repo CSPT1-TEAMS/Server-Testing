@@ -4,7 +4,7 @@ const user = new mongoose.Schema({
     name: {
         type: String
     },
-    race: {
+    ethnicity: {
         type: String,
         lowercase: true
     }

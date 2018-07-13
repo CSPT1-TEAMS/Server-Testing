@@ -15,17 +15,17 @@ describe('user model tests', () => {
       })
 
     it('should create a user to the db', async () => {
-        const userData = { name: 'Alexis', race: 'Latino' }
+        const userData = { name: 'Alexis', ethnicity: 'Latino' }
 
         const response = await User.create(userData)
         expect(response.name).toBeDefined()
-        expect(response.race).toBeDefined()
+        expect(response.ethnicity).toBeDefined()
     });
 
-    it('should have race be lowercase', async () => {
-        const userData = { name: "Alexis", race: "Latino" }
+    it('should have ethnicity be lowercase', async () => {
+        const userData = { name: "Alexis", ethnicity: "Latino" }
 
         const response = await User.create(userData)
-        expect(response.race).toBe("latino")
-    })
+        expect(response.ethnicity).toBe("latino")
+    });
 })

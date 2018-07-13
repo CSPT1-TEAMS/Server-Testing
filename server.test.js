@@ -4,21 +4,23 @@ const server = require('./server');
 describe('server tests', () => {
     it('should have base server endpoint, that also returns a 200 status' , async () => {
         await request(server)
-            .get('/Home')
+            .get('/')
             .expect(200)
     });
 
     it('should return JSON confirming a get request on the server', async () => {
-        const response = await request(server).get('/Home')
+        const response = await request(server).get('/')
 
         expect(200)
         expect(response.body).toEqual( {"Server": "You're in it!"} )
     });
 
-    // it('should return Alexis via get request', async () => {
-    //     const response = await request(server).get('/user')
+    it('should create data using post', async () => {
+        await request(server)
+            .post('/')
+        
+            expect(201)
+        
+    });
 
-    //     expect(200)
-    //     expect(response.name).toEqual('Alexis')
-    // })
 })
