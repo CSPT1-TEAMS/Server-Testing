@@ -20,23 +20,24 @@ describe('user model', () => {
 
     afterAll(() => {
         return mongoose.disconnect()
-      })
-    
+    })
+
     afterEach(() => {
         return User.remove()
     })
 
-it('should save users to the database', async () => {
-    const user = { username: 'Russell', password: 'password' }
+    it('should save users to the database', async () => {
+        const user = { username: 'Russell', password: 'password' }
 
-    await User.create(user)
+        await User.create(user)
     })
 
     it('should hash a user\'s password before they are saved to the database', async () => {
-    const user = { username: 'Russell', password: 'password' }
+        const user = { username: 'Russell', password: 'password' }
 
-    const newUser = await User.create(user)
+        const newUser = await User.create(user)
 
-    expect(newUser.password).not.toBe(user.password)
+        expect(newUser.password).not.toBe(user.password)
     })
+
 })

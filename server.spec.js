@@ -9,10 +9,19 @@
 // Your mongoose model should have at least a method or static that is tested.
 
 
-const request = require('supertest')
-const server = require('./server')
+const request = require('supertest');
+const server = require('./server');
+const mongoose = require('mongoose');
 
 describe('server', () => {
+    beforeAll(() => {
+        return mongoose.connect('mongodb://localhost/testdb')
+    })
+
+    afterAll(() => {
+        return mongoose.disconnect()
+    })
+
     it('has a GET / endpoint', async () => {
         await request(server)
         .get('/')
@@ -34,9 +43,15 @@ describe('server', () => {
     })
 
 
-    it('should return user data after successfully saved to db', async () => {
+    it('should return user data after successfully saved to db', 
+    async () => {
+        const testUserData = {
+            username: 'Lisa',
+            password: '123'
+        } 
+        const response = response.data;
         await request(server)
-        .post('/')
-        .expect(201)
+        .post('/', testUserData)
+        .expect(response.status).toBe(201)
     })
 })

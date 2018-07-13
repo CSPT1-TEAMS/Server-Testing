@@ -3,6 +3,10 @@ const server = express();
 const db = require('mongoose');
 const User = require('./User');
 
+
+// server.get('/', get);
+// server.post('/', post);
+
 server.get('/', (req, res) => {
     res.status(200).json({"api": "running"}).end()
 })
@@ -13,9 +17,11 @@ const testUserData = {
 } 
 
 server.post('/', (req, res) => {
-    const testUser = new User(testUserData);
+    const testUser = new User(req.body);
+
     testUser.save()
     .then( user => {
+        console.log('RES', res)
         res.status(201).json(user);
       })
       .catch( err => {
