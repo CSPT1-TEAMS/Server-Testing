@@ -4,8 +4,8 @@ server.use(express.json())
 const User = require('./userModel');
 
 
-server.get('/', (req, res) => {
-    res.status(200).json( {"Server": "You're in it!"} ).end()
+server.get('/Home', (req, res) => {
+    res.status(200).json( {"Server": "You're in it!"} )
 });
 
 // server.post('/', (req, res) => {
