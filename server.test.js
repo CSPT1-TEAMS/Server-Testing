@@ -8,7 +8,7 @@ describe('server loads', () => {
         .expect(200)
     })
 
-    it('return json from endpoint /', (done) => {
+    it('returns json from endpoint /', (done) => {
         const testJson = {'dBStatus': 'connected'}
         request(server)
         .get('/')
@@ -19,6 +19,4 @@ describe('server loads', () => {
         done();
         })
     })
-
 })
-

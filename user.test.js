@@ -26,8 +26,21 @@ describe('user Model', () => {
       .send(user)
       .end(function (err, res) {
         if (err) return done(err);
-      expect(res.status).toBe(200)
-      expect(res.body).toEqual(user)
+        expect(res.status).toBe(200)
+        expect(res.body).toEqual(user)
+        done();
+      });
+  })
+
+  it('should delete `user` at endpoint/user', () => {
+    const user = { username: 'Glenn-David', password: 'password' }
+    request(server)
+      .delete('/user')
+      .send(user)
+      .end(function (err, res) {
+        if (err) return done(err);
+        expect(res.status).toBe(200)
+        expect(res.body).toEqual(user)
         done();
       });
   })
