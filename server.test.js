@@ -21,15 +21,19 @@ describe('server tests', () => {
         const response = await request(server).get('/Home')
 
         .expect(200)
-        .expect(response.body).toEqual( {"Server": "You're in it!"} )
+        expect(response.body).toEqual( {"Server": "You're in it!"} )
     });
 
     it('should create data using post', async () => {
         await request(server)
             .post('/user')
+            .send({ name: 'Bhavik', ethnicity: 'Hindu' })
+            .expect(201)
+            
+            const response = await request(server).get('/user')
 
             .expect(200)
-            
+            expect(response.body).toEqual( {name: 'Bhavik' } )
     });
 
 })
