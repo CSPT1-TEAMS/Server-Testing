@@ -24,14 +24,14 @@ describe('server', () => {
 
     it('has a GET / endpoint', async () => {
         await request(server)
-        .get('/')
-        .expect(200)
+            .get('/')
+            .expect(200)
     })
 
     it('has a GET / endpoint that returns 200', async () => {
         await request(server)
-        .get('/')
-        .expect(200)
+            .get('/')
+            .expect(200)
     })
 
     it('has a GET / endpoint that returns json', async () => {
@@ -42,16 +42,26 @@ describe('server', () => {
         expect(response.body).toEqual(expectedJSON)
     })
 
+    it('should return user data after successfully saved to db',
+        async () => {
+            const testUserData = {
+                username: 'Lisa',
+                password: '123'
+            }
+            console.log('TEST', testUserData)
+            await request(server).post('/', testUserData)
+                .expect(201);
+        })
 
-    it('should return user data after successfully saved to db', 
-    async () => {
-        const testUserData = {
-            username: 'Lisa',
-            password: '123'
-        } 
-        const response = response.data;
-        await request(server)
-        .post('/', testUserData)
-        .expect(response.status).toBe(201)
-    })
+    // it('should return status 202 after successfully deleting from db',
+    //     async () => {
+    //         // const testUserData = {
+    //         //     username: 'Lisa',
+    //         //     password: '123'
+    //         // }
+    //         console.log('TEST', testUserData)
+    //         await request(server).delete('/', testUserData)
+    //             .expect(202);
+    // })
+
 })

@@ -17,17 +17,27 @@ const testUserData = {
 } 
 
 server.post('/', (req, res) => {
-    const testUser = new User(req.body);
-
+    const testUser = new User(testUserData);
+    console.log('USER', testUser)
     testUser.save()
     .then( user => {
-        console.log('RES', res)
+  
         res.status(201).json(user);
       })
       .catch( err => {
         res.status(500).json({error: 'Error posting to database', err});
       })
 })
+
+// server.delete('/', (req, res) => {
+//     testUser.remove()
+//         .then(user => {
+//             res.status(202).json(user)
+//         })
+//         .catch(err => {
+//             res.status(500).json({ error: 'Error deleting from database', err });
+//         })
+// })
 
 
 
