@@ -16,11 +16,12 @@ server.post('/user', (req, res) => {
   const user = new User(req.body)
     .save()
     .then((user) => {
-      res.status(202).json(user)
+      res.status(200).json(user)
     })
     .catch((error) => {
       res.status(500).json(error)
     })
+})
 
 server.delete('/user', (req, res) => {
   const user = User(req.body)
@@ -33,4 +34,4 @@ server.delete('/user', (req, res) => {
       res.status(500).json(error)
     })
 })
-module.exports = server;
+module.exports = server
