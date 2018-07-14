@@ -27,7 +27,7 @@ describe('user Model', () => {
       .end(function (err, res) {
         if (err) return done(err);
       expect(res.status).toBe(200)
-      expect(res.body).toEqual(user)
+      expect(res.username, res.password).toEqual(user)
         done();
       });
   })
